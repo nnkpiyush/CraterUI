@@ -1,0 +1,5 @@
+baseUrl: https://demo.craterapp.com
+loginUrl: https://demo.craterapp.com/login
+username: admin@craterapp.com
+password: crater@123
+browser: chrome
