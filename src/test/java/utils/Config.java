@@ -6,6 +6,8 @@ public class Config {
 	private String username;
 	private String password;
 	private String browser;
+	private int PollingDuration;
+	private int Timeoutforwait;
 	
 	
 	public void setBaseUrl(String baseUrl) {
@@ -48,5 +50,20 @@ public class Config {
 		return browser;
 	}
 	
+	public void setPollingDuration(int pollingduration) {
+		this.PollingDuration = pollingduration;
+	}
+	
+	public int getPollingDuration() {
+		return PollingDuration;
+	}
+	
+	public void setTimeoutForWait(int timeoutforwait) {
+		this.Timeoutforwait = timeoutforwait;
+	}
+	
+	public int getTimeoutForWait() {
+		return Timeoutforwait;
+	}
 
 }
