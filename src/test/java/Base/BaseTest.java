@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
@@ -21,24 +22,21 @@ import org.apache.logging.log4j.Logger;
 public class BaseTest extends commons {
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 	protected static final Logger log = LogManager.getLogger(BaseTest.class);
-	//WebDriver driver;
-	
 	public BaseTest() {
 		super();
 	}
 	
-	@BeforeTest
+	@BeforeSuite
 	public void driverInitilization() {
 		
 		if(config.getBrowser().equalsIgnoreCase("chrome")) {
-			//System.setProperty("webdriver.chrome.driver", "/home/piyushgupta/Desktop/chromedriver");
 			System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
 			
 			driver.set(new ChromeDriver());
-			//driver = new ChromeDriver();
 		}
 		else if (config.getBrowser().equalsIgnoreCase("firefox"))
 		{
+			System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
 			driver.set(new FirefoxDriver());
 		}
 		
@@ -103,9 +101,15 @@ public class BaseTest extends commons {
 	
 	public boolean isVisible(WebElement element) {
 		boolean visible = false;
+		try {
 		if(element.isDisplayed()) {
 			visible = true;
 		}
+		}
+		catch(Exception e){
+			visible = false;
+		}
+		
 		return visible;
 	}
 	
@@ -135,6 +139,10 @@ public class BaseTest extends commons {
 			
 		}
 		
+	}
+	
+	public void clickonElement(WebElement element) {
+		element.click();
 	}
 	
 	@AfterSuite

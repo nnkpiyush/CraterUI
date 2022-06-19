@@ -5,7 +5,7 @@
     <classes>
       <class name="Tests.LoginTest">
         <methods>
-          <include name="loginTest"/>
+          <include name="logoutTest"/>
           <include name="tearDown"/>
           <include name="driverInitilization"/>
         </methods>

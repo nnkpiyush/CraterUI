@@ -42,5 +42,13 @@ public class LoginPage extends BaseTest {
 		return this;
 	}
 	
+	public LoginPage waitForLoginToAppear() {
+		waitForElement(login);
+		return this;
+	}
+	
+	public boolean isLoginButtonDisplayed() {
+		return isVisible(login);
+	}
 	
 }

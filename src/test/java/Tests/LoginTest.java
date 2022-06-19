@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest {
 		super();
 	}
 	
-  @Test
+  @Test(description = "verify login test")
   public void loginTest() throws InterruptedException {
 	// page initilization
 	LoginPage loginpage = PageFactory.initElements(getDriver(), LoginPage.class);
@@ -28,5 +28,32 @@ public class LoginTest extends BaseTest {
 	Assert.assertTrue(homepage.isAvatarVisible());
   }
   
+  @Test(description = "verify logout")
+  public void logoutTest() throws InterruptedException {
+  
+	//page initilization
+	LoginPage loginpage = PageFactory.initElements(getDriver(), LoginPage.class);
+	HomePage homepage = PageFactory.initElements(getDriver(), HomePage.class);
+	
+	// navigate to login page 
+	navigateTo(config.getLoginUrl());
+	if(loginpage.isLoginButtonDisplayed()) {
+	loginpage.login(config.getUsername(), config.getPassword());
+	}
+	homepage.waitForDashboardtoLoad();
+	Thread.sleep(4000);
+	// click on logout
+	homepage.clickonAvatar();
+	homepage.clickonLogout();
+	
+	// verify user is loged out
+	loginpage.waitForLoginToAppear();
+	Assert.assertTrue(loginpage.isLoginButtonDisplayed());
+	
+	
+	
+	
+	
+  }
 	
 }
